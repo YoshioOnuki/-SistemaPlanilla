@@ -316,6 +316,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseClicked
         ponerMod();
+        Principal.PanelPrincipal.removeAll();
+        Principal.PanelPrincipal.revalidate();
+        Principal.PanelPrincipal.repaint();
     }//GEN-LAST:event_btnAtrasMouseClicked
 
     private void btnAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseEntered
