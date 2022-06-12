@@ -20,6 +20,11 @@ public class ModuloArea extends javax.swing.JPanel {
      */
     public ModuloArea() {
         initComponents();
+        placeholder();
+    }
+    
+    void placeholder(){
+        Textp txta = new Textp("Buscar Area/Còdigo", txtBuscarArea);
     }
 
     /**

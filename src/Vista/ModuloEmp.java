@@ -22,6 +22,11 @@ public class ModuloEmp extends javax.swing.JPanel {
      */
     public ModuloEmp() {
         initComponents();
+        placeholders();
+    }
+    
+    void placeholders(){
+        Textp txte = new Textp("Buscar DNI/Código", txtBuscarEmp);
     }
 
     

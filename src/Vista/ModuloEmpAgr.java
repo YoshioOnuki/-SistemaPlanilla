@@ -34,8 +34,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         txtCodEmp.setEditable(false);
         
     }
-
-    
     
     
     
