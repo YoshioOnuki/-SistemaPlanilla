@@ -5,9 +5,12 @@
  */
 package Vista;
 
+import Modelo.areaMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -15,16 +18,41 @@ import java.awt.Dimension;
  */
 public class ModuloArea extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloArea
-     */
+    DefaultTableModel m = new DefaultTableModel();
+    
+    Modelo.areaMod empMod = new areaMod();
+    
+    
     public ModuloArea() {
         initComponents();
         placeholder();
+        buscarEmpleado();
     }
     
     void placeholder(){
         Textp txta = new Textp("Buscar Area/Còdigo", txtBuscarArea);
+    }
+    
+    void buscarEmpleado(){
+        try {
+            m = empMod.consultarArea(txtBuscarArea.getText());
+            tablaArea.setModel(m);
+            
+//            TableColumn t = tablaArea.getColumn("ID");
+//            t.setPreferredWidth(80);
+//            t.setMaxWidth(80);
+//            t.setMinWidth(80);
+//            
+//            TableColumn t2 = tablaArea.getColumn("NOMBRE DE AREA");
+//            t2.setPreferredWidth(50);
+//            t2.setMaxWidth(50);
+//            t2.setMinWidth(50);
+            
+            
+            tablaArea.setRowHeight(25);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar paciente: " + e);
+        }
     }
 
     /**
@@ -45,7 +73,7 @@ public class ModuloArea extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         txtBuscarArea = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaArea = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -166,6 +194,11 @@ public class ModuloArea extends javax.swing.JPanel {
                 txtBuscarAreaActionPerformed(evt);
             }
         });
+        txtBuscarArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarAreaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -188,8 +221,8 @@ public class ModuloArea extends javax.swing.JPanel {
         jScrollPane1.setMinimumSize(new java.awt.Dimension(890, 360));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(890, 360));
 
-        jTable1.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaArea.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        tablaArea.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -200,7 +233,7 @@ public class ModuloArea extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -278,6 +311,10 @@ public class ModuloArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarAreaActionPerformed
 
+    private void txtBuscarAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAreaKeyTyped
+        buscarEmpleado();
+    }//GEN-LAST:event_txtBuscarAreaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnAgregarArea;
@@ -287,8 +324,8 @@ public class ModuloArea extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAgregar;
+    private javax.swing.JTable tablaArea;
     private javax.swing.JTextField txtBuscarArea;
     // End of variables declaration//GEN-END:variables
 }

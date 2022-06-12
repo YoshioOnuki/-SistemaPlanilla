@@ -41,6 +41,7 @@ public class usuarioMod {
                 entU.setUsuario(rs.getString(2));
                 entU.setContrasenia(rs.getString(3));
                 entU.setUsuEstd(rs.getString(4));
+                entU.setEmpID(rs.getInt(5));
             }
             
         } catch (Exception e) {

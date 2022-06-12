@@ -76,8 +76,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         cboArea = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtIngrFecIngr = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtIngrNumHijos = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -257,20 +255,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
-        jLabel11.setText("Número de hijos:");
-
-        txtIngrNumHijos.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        txtIngrNumHijos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
-        txtIngrNumHijos.setMaximumSize(new java.awt.Dimension(230, 26));
-        txtIngrNumHijos.setMinimumSize(new java.awt.Dimension(230, 26));
-        txtIngrNumHijos.setPreferredSize(new java.awt.Dimension(230, 26));
-        txtIngrNumHijos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngrNumHijosActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel12.setText("Codigo de Empleado:");
 
@@ -408,13 +392,9 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                             .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel11))
+                                        .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtIngrFecIngr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIngrNumHijos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(txtIngrFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(72, 72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,10 +454,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtIngrFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtIngrNumHijos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,7 +463,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnIngrFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
@@ -586,10 +563,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnIngrFotoMouseClicked
 
-    private void txtIngrNumHijosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrNumHijosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngrNumHijosActionPerformed
-
     private void txtCodEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodEmpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodEmpActionPerformed
@@ -603,7 +576,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -625,6 +597,5 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private javax.swing.JTextField txtIngrFecIngr;
     private javax.swing.JTextField txtIngrFecNac;
     private javax.swing.JTextField txtIngrNomb;
-    private javax.swing.JTextField txtIngrNumHijos;
     // End of variables declaration//GEN-END:variables
 }

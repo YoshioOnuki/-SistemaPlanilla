@@ -28,9 +28,13 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Control de Planilla");
         ponerMod();
-        
+        cargarNombre();
         
         explorador();
+    }
+    
+    void cargarNombre(){
+        lblNombrePrincipal.setText(Login.nombreapellidoEmpleado);
     }
     
     void explorador(){
@@ -78,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNombrePrincipal = new javax.swing.JLabel();
+        lblNombrePrincipal = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         PanelMod = new javax.swing.JPanel();
@@ -102,8 +106,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SF UI Display", 1, 18)); // NOI18N
         jLabel1.setText("Bienvenido");
 
-        txtNombrePrincipal.setFont(new java.awt.Font("SF UI Display", 1, 18)); // NOI18N
-        txtNombrePrincipal.setText("Yoshio Onuki Navas");
+        lblNombrePrincipal.setFont(new java.awt.Font("SF UI Display", 1, 18)); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/book-bookmark-solid.png"))); // NOI18N
 
@@ -117,14 +120,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(6, 6, 6)
-                .addComponent(txtNombrePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombrePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtNombrePrincipal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombrePrincipal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -377,6 +380,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblCerrarSe;
-    private javax.swing.JLabel txtNombrePrincipal;
+    private javax.swing.JLabel lblNombrePrincipal;
     // End of variables declaration//GEN-END:variables
 }

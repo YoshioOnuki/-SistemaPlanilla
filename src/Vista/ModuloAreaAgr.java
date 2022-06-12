@@ -20,6 +20,7 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
      */
     public ModuloAreaAgr() {
         initComponents();
+        txtIngrID.setEditable(false);
     }
 
     /**
@@ -35,6 +36,12 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
         btnExit = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtIngrID = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtIngrNombArea = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JPanel();
+        lblAgregar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -90,7 +97,7 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 930, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -104,17 +111,96 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
         jLabel2.setText("Áreas");
 
+        jLabel1.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        jLabel1.setText("ID Área:");
+
+        txtIngrID.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        txtIngrID.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
+        txtIngrID.setMaximumSize(new java.awt.Dimension(230, 26));
+        txtIngrID.setMinimumSize(new java.awt.Dimension(230, 26));
+        txtIngrID.setPreferredSize(new java.awt.Dimension(230, 26));
+        txtIngrID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIngrIDActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        jLabel3.setText("Nombre de Área:");
+
+        txtIngrNombArea.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        txtIngrNombArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
+        txtIngrNombArea.setMaximumSize(new java.awt.Dimension(230, 26));
+        txtIngrNombArea.setMinimumSize(new java.awt.Dimension(230, 26));
+        txtIngrNombArea.setPreferredSize(new java.awt.Dimension(230, 26));
+        txtIngrNombArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIngrNombAreaActionPerformed(evt);
+            }
+        });
+
+        btnAgregar.setBackground(new java.awt.Color(205, 194, 174));
+        btnAgregar.setMaximumSize(new java.awt.Dimension(160, 50));
+        btnAgregar.setMinimumSize(new java.awt.Dimension(160, 50));
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseExited(evt);
+            }
+        });
+
+        lblAgregar.setFont(new java.awt.Font("SF UI Display", 1, 16)); // NOI18N
+        lblAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAgregar.setText("Ingresar");
+
+        javax.swing.GroupLayout btnAgregarLayout = new javax.swing.GroupLayout(btnAgregar);
+        btnAgregar.setLayout(btnAgregarLayout);
+        btnAgregarLayout.setHorizontalGroup(
+            btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnAgregarLayout.setVerticalGroup(
+            btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel1)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtIngrID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtIngrNombArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(405, 405, 405)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,7 +209,15 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addGap(0, 508, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIngrID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIngrNombArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(100, 100, 100)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(303, 303, 303))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,11 +240,45 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
         btnExit.setBackground(new Color(53,66,89));
     }//GEN-LAST:event_btnExitMouseExited
 
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        ModuloArea mArea = new ModuloArea();
+
+        mArea.setSize(new Dimension(970, 600));
+        mArea.setLocation(0,0);
+        Principal.PanelPrincipal.removeAll();
+        Principal.PanelPrincipal.add(mArea, BorderLayout.CENTER);
+        Principal.PanelPrincipal.revalidate();
+        Principal.PanelPrincipal.repaint();
+
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
+        btnAgregar.setBackground(new Color(194, 222, 209));
+    }//GEN-LAST:event_btnAgregarMouseEntered
+
+    private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
+        btnAgregar.setBackground(new Color(205,194,174));
+    }//GEN-LAST:event_btnAgregarMouseExited
+
+    private void txtIngrIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIngrIDActionPerformed
+
+    private void txtIngrNombAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrNombAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIngrNombAreaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnAgregar;
     private javax.swing.JPanel btnExit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblAgregar;
+    private javax.swing.JTextField txtIngrID;
+    private javax.swing.JTextField txtIngrNombArea;
     // End of variables declaration//GEN-END:variables
 }

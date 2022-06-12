@@ -5,11 +5,14 @@
  */
 package Vista;
 
+import Modelo.empleadoMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -17,16 +20,18 @@ import javax.swing.JOptionPane;
  */
 public class ModuloEmp extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloEmpleadoo
-     */
+    DefaultTableModel m = new DefaultTableModel();
+    
+    Modelo.empleadoMod empMod = new empleadoMod();
+    
     public ModuloEmp() {
         initComponents();
         placeholders();
+        buscarEmpleado();
     }
     
     void placeholders(){
-        Textp txte = new Textp("Buscar DNI/Código", txtBuscarEmp);
+        Textp txte = new Textp("Buscar DNI/Nombre", txtBuscarEmp);
     }
 
     
@@ -47,6 +52,33 @@ public class ModuloEmp extends javax.swing.JPanel {
                 Principal.PanelPrincipal.revalidate();
                 Principal.PanelPrincipal.repaint();
             }
+        }
+    }
+    
+    void buscarEmpleado(){
+        try {
+            m = empMod.consultarEmpleado(txtBuscarEmp.getText());
+            tablaEmp.setModel(m);
+            
+            TableColumn t = tablaEmp.getColumn("DNI");
+            t.setPreferredWidth(80);
+            t.setMaxWidth(80);
+            t.setMinWidth(80);
+            
+            TableColumn t2 = tablaEmp.getColumn("ID");
+            t2.setPreferredWidth(50);
+            t2.setMaxWidth(50);
+            t2.setMinWidth(50);
+            
+            TableColumn t3 = tablaEmp.getColumn("SALARIO");
+            t3.setPreferredWidth(80);
+            t3.setMaxWidth(80);
+            t3.setMinWidth(80);
+            
+            
+            tablaEmp.setRowHeight(25);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar paciente: " + e);
         }
     }
     
@@ -188,21 +220,12 @@ public class ModuloEmp extends javax.swing.JPanel {
         tablaEmp.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
         tablaEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "DNI", "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Género", "Área", "Fecha de Ingreso", "Numeno de Hijos"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         tablaEmp.setComponentPopupMenu(menuEmp);
         jScrollPane1.setViewportView(tablaEmp);
 
@@ -220,6 +243,11 @@ public class ModuloEmp extends javax.swing.JPanel {
         txtBuscarEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarEmpActionPerformed(evt);
+            }
+        });
+        txtBuscarEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarEmpKeyTyped(evt);
             }
         });
 
@@ -313,13 +341,17 @@ public class ModuloEmp extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarEmpMouseExited
 
     private void txtBuscarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarEmpActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtBuscarEmpActionPerformed
 
     private void menuSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalActionPerformed
         int opc = 1;
         OpcEmp(opc);
     }//GEN-LAST:event_menuSalActionPerformed
+
+    private void txtBuscarEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarEmpKeyTyped
+        buscarEmpleado();
+    }//GEN-LAST:event_txtBuscarEmpKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

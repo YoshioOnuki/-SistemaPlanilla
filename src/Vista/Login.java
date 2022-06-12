@@ -5,7 +5,9 @@
  */
 package Vista;
 
+import Entidad.empleado;
 import Entidad.usuario;
+import Modelo.empleadoMod;
 import Modelo.usuarioMod;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -18,6 +20,10 @@ public class Login extends javax.swing.JFrame {
 
     Entidad.usuario entU = new usuario();
     Modelo.usuarioMod usuMod = new usuarioMod();
+    Entidad.empleado entE = new empleado();
+    Modelo.empleadoMod empMod = new empleadoMod();
+    
+    public static String dnie, nombreE, apellidoE, nombreapellidoEmpleado;
     
     
     public Login() {
@@ -26,6 +32,8 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Login");
         placeholder();
+        txtUsuario.setText("USUA001");
+        txtContrasenia.setText("123123");
     }
     
     //Para los campos de texto
@@ -46,7 +54,18 @@ public class Login extends javax.swing.JFrame {
             entU = usuMod.validarUsuario(usu, cont);
             if(entU.getUsuario()!= null && entU.getContrasenia()!= null){
                 int idu = entU.getUsuID();
-                System.out.println("id user " + idu);
+                int idemp = entU.getEmpID();
+                System.out.println("id usuario: " + idu);
+                System.out.println("id empleado: "+idemp);
+                
+                entE = empMod.validarEmpleado(idemp);
+                dnie = entE.getEmpDNI();
+                nombreE = entE.getEmpNomb();
+                apellidoE = entE.getEmpApePate() +" "+ entE.getEmpApeMat();
+                System.out.println("DNI Empleado: " + dnie);
+                System.out.println("Nombre del Empleado: " + nombreE);
+                
+                nombreapellidoEmpleado = nombreE + " " + apellidoE;
                 
                 Principal prin = new Principal();
                 prin.setVisible(true);

@@ -14,15 +14,17 @@ public class usuario {
     private String Usuario;
     private String Contrasenia;
     private String UsuEstd;
+    private int EmpID;
 
     public usuario() {
     }
 
-    public usuario(int UsuID, String Usuario, String Contrasenia, String UsuEstd) {
+    public usuario(int UsuID, String Usuario, String Contrasenia, String UsuEstd, int EmpID) {
         this.UsuID = UsuID;
         this.Usuario = Usuario;
         this.Contrasenia = Contrasenia;
         this.UsuEstd = UsuEstd;
+        this.EmpID = EmpID;
     }
 
     public int getUsuID() {
@@ -55,6 +57,14 @@ public class usuario {
 
     public void setUsuEstd(String UsuEstd) {
         this.UsuEstd = UsuEstd;
+    }
+
+    public int getEmpID() {
+        return EmpID;
+    }
+
+    public void setEmpID(int EmpID) {
+        this.EmpID = EmpID;
     }
     
     
