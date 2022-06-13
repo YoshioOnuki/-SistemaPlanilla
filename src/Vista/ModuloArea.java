@@ -9,6 +9,7 @@ import Modelo.areaMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -21,7 +22,7 @@ public class ModuloArea extends javax.swing.JPanel {
     DefaultTableModel m = new DefaultTableModel();
     
     Modelo.areaMod empMod = new areaMod();
-    
+    public static int tipoBoton, idarea;
     
     public ModuloArea() {
         initComponents();
@@ -38,21 +39,30 @@ public class ModuloArea extends javax.swing.JPanel {
             m = empMod.consultarArea(txtBuscarArea.getText());
             tablaArea.setModel(m);
             
-//            TableColumn t = tablaArea.getColumn("ID");
-//            t.setPreferredWidth(80);
-//            t.setMaxWidth(80);
-//            t.setMinWidth(80);
-//            
-//            TableColumn t2 = tablaArea.getColumn("NOMBRE DE AREA");
-//            t2.setPreferredWidth(50);
-//            t2.setMaxWidth(50);
-//            t2.setMinWidth(50);
-            
-            
             tablaArea.setRowHeight(25);
         } catch (Exception e) {
             System.out.println("Error al mostrar paciente: " + e);
         }
+    }
+    
+    // aqui me muestra las opciones del paciente como "modificar o eliminar"
+    void opcionesArea(){
+        int fila = tablaArea.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }else{
+            idarea = Integer.parseInt(tablaArea.getValueAt(fila, 0).toString());
+            
+            ModuloAreaAgr mAreaAgr = new ModuloAreaAgr();
+
+            mAreaAgr.setSize(new Dimension(970, 600));
+            mAreaAgr.setLocation(0,0);
+            Principal.PanelPrincipal.removeAll();
+            Principal.PanelPrincipal.add(mAreaAgr, BorderLayout.CENTER);
+            Principal.PanelPrincipal.revalidate();
+            Principal.PanelPrincipal.repaint();
+        }
+    
     }
 
     /**
@@ -64,6 +74,8 @@ public class ModuloArea extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        actualizar = new javax.swing.JMenuItem();
         jPanel6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -74,6 +86,15 @@ public class ModuloArea extends javax.swing.JPanel {
         txtBuscarArea = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArea = new javax.swing.JTable();
+
+        actualizar.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        actualizar.setText("Actualizar Area");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(actualizar);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -233,6 +254,7 @@ public class ModuloArea extends javax.swing.JPanel {
 
             }
         ));
+        tablaArea.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tablaArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -289,6 +311,8 @@ public class ModuloArea extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnAgregarAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarAreaMouseClicked
+        tipoBoton = 1;
+        
         ModuloAreaAgr mAreaAgr = new ModuloAreaAgr();
 
         mAreaAgr.setSize(new Dimension(970, 600));
@@ -315,14 +339,22 @@ public class ModuloArea extends javax.swing.JPanel {
         buscarEmpleado();
     }//GEN-LAST:event_txtBuscarAreaKeyTyped
 
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        // TODO add your handling code here:
+        tipoBoton = 2;
+        opcionesArea();
+    }//GEN-LAST:event_actualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem actualizar;
     private javax.swing.JPanel btnAgregarArea;
     private javax.swing.JPanel btnExit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JTable tablaArea;

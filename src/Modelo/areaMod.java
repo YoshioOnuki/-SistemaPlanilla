@@ -6,6 +6,7 @@
 package Modelo;
 
 import DB.ConeDB;
+import Entidad.area;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,5 +47,27 @@ public class areaMod {
         }
 
         return m;
+    }
+    
+    //aqui obtenemos todos los datos persona para poder modificarlos
+    public Entidad.area datosArea(int idarea){
+        Entidad.area ea = new area();
+        
+        String sql = "SELECT * FROM area WHERE AreaID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setInt(1, idarea);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ea.setAreaID(rs.getInt(1));
+                ea.setAreaNom(rs.getString(2));
+            }
+        } catch (Exception e) {
+            System.out.println("error al obtener datos de area:  " + e);
+        }
+        
+        return ea;
     }
 }

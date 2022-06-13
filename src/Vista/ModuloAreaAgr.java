@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Entidad.area;
+import Modelo.areaMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,12 +17,39 @@ import java.awt.Dimension;
  */
 public class ModuloAreaAgr extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloAreaAgr
-     */
+    Entidad.area a = new area();
+    Modelo.areaMod am = new areaMod();
+    
     public ModuloAreaAgr() {
         initComponents();
         txtIngrID.setEditable(false);
+        titulo();
+    }
+    
+    //aqui nos carga el titulo de la interfaz ya sea para ingresar o modificaar datos
+    void titulo(){
+        if(ModuloArea.tipoBoton==1){
+            titulo.setText("");
+            titulo.setText("Ingresar Areas");
+            lblAgregar.setText("");
+            lblAgregar.setText("Ingresar");
+        }else if(ModuloArea.tipoBoton==2){
+            titulo.setText("");
+            titulo.setText("Modificar Areas");
+            lblAgregar.setText("");
+            lblAgregar.setText("Modificar");
+            cargarDatosActualizar();
+        }
+    }
+    
+    //aqui cargamos todos los datos del paciente para proceder a modificar
+    void cargarDatosActualizar(){
+        int idarea = ModuloArea.idarea; 
+        
+        a = am.datosArea(idarea);
+        
+        txtIngrID.setText("" + a.getAreaID());
+        txtIngrNombArea.setText(a.getAreaNom());
     }
 
     /**
@@ -35,7 +64,7 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtIngrID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -107,9 +136,9 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel2.setBackground(new java.awt.Color(0, 23, 35));
-        jLabel2.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
-        jLabel2.setText("Áreas");
+        titulo.setBackground(new java.awt.Color(0, 23, 35));
+        titulo.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
+        titulo.setText("Áreas");
 
         jLabel1.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel1.setText("ID Área:");
@@ -196,7 +225,7 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addComponent(jLabel2))
+                                .addComponent(titulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(405, 405, 405)
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -208,7 +237,7 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addComponent(titulo)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,11 +302,11 @@ public class ModuloAreaAgr extends javax.swing.JPanel {
     private javax.swing.JPanel btnAgregar;
     private javax.swing.JPanel btnExit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblAgregar;
+    private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtIngrID;
     private javax.swing.JTextField txtIngrNombArea;
     // End of variables declaration//GEN-END:variables

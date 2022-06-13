@@ -69,13 +69,11 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtIngrApePa1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtIngrFecNac = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cboGenero = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         cboArea = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        txtIngrFecIngr = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -84,6 +82,8 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         btnAgregar = new javax.swing.JPanel();
         lblAgregar = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        txtFecNac = new com.toedter.calendar.JDateChooser();
+        txtFecIngr = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -212,17 +212,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel9.setText("Fecha de Nacimiento:");
 
-        txtIngrFecNac.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        txtIngrFecNac.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
-        txtIngrFecNac.setMaximumSize(new java.awt.Dimension(230, 26));
-        txtIngrFecNac.setMinimumSize(new java.awt.Dimension(230, 26));
-        txtIngrFecNac.setPreferredSize(new java.awt.Dimension(230, 26));
-        txtIngrFecNac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngrFecNacActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel7.setText("Género:");
 
@@ -243,17 +232,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel10.setText("Fecha de ingreso:");
-
-        txtIngrFecIngr.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        txtIngrFecIngr.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
-        txtIngrFecIngr.setMaximumSize(new java.awt.Dimension(230, 26));
-        txtIngrFecIngr.setMinimumSize(new java.awt.Dimension(230, 26));
-        txtIngrFecIngr.setPreferredSize(new java.awt.Dimension(230, 26));
-        txtIngrFecIngr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngrFecIngrActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel12.setText("Codigo de Empleado:");
@@ -355,6 +333,14 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel13.setText("Seleccione un foto.");
 
+        txtFecNac.setMaximumSize(new java.awt.Dimension(230, 26));
+        txtFecNac.setMinimumSize(new java.awt.Dimension(230, 26));
+        txtFecNac.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        txtFecIngr.setMaximumSize(new java.awt.Dimension(230, 26));
+        txtFecIngr.setMinimumSize(new java.awt.Dimension(230, 26));
+        txtFecIngr.setPreferredSize(new java.awt.Dimension(230, 26));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -368,7 +354,20 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel8))
+                                            .addGap(104, 104, 104)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
@@ -376,26 +375,18 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                             .addComponent(jLabel1)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel9))
-                                        .addGap(15, 15, 15)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtIngrNomb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIngrApePa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIngDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIngrApePa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIngrFecNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8))
-                                        .addGap(104, 104, 104)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtIngrFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(72, 72, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtIngrNomb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtIngrApePa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtIngDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtIngrApePa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(69, 69, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -438,10 +429,13 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtIngrApePa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtIngrFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addComponent(txtFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -450,11 +444,14 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtIngrFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addComponent(txtFecIngr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,7 +460,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnIngrFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
@@ -503,14 +500,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private void txtIngrApePa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrApePa1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIngrApePa1ActionPerformed
-
-    private void txtIngrFecNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrFecNacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngrFecNacActionPerformed
-
-    private void txtIngrFecIngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrFecIngrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngrFecIngrActionPerformed
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         ModuloEmp mEmp = new ModuloEmp();
@@ -591,11 +580,11 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblFotoUser;
     private javax.swing.JTextField txtCodEmp;
+    private com.toedter.calendar.JDateChooser txtFecIngr;
+    private com.toedter.calendar.JDateChooser txtFecNac;
     private javax.swing.JTextField txtIngDNI;
     private javax.swing.JTextField txtIngrApePa;
     private javax.swing.JTextField txtIngrApePa1;
-    private javax.swing.JTextField txtIngrFecIngr;
-    private javax.swing.JTextField txtIngrFecNac;
     private javax.swing.JTextField txtIngrNomb;
     // End of variables declaration//GEN-END:variables
 }
