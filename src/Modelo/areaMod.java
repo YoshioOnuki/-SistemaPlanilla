@@ -70,4 +70,37 @@ public class areaMod {
         
         return ea;
     }
+    
+    public int addArea(Object[] o) {
+        int r = 0;
+        String sql = "INSERT INTO area(AreaNom) VALUES(?)";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error al ingresar Área " + e);
+        }
+        
+        return r;
+    }
+    
+    public int updateArea(Object[] o) {
+        int r = 0;
+        String sql = "UPDATE area SET AreaNom=? WHERE AreaID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error actualizar Área" + e);
+        }
+        
+        return r;
+    } 
 }

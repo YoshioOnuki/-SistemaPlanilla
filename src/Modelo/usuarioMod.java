@@ -50,4 +50,41 @@ public class usuarioMod {
         
         return entU;
     }
+    
+    public String consultarCodUsua(){
+        String serie = "";
+        String sql = "SELECT max(Usuario) FROM usuario";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                serie = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("error en consultar codigo e ventas " + e);
+        }
+        
+        return serie;
+    }
+    
+    public int addUsuario(Object[] o) {
+        int r = 0;
+        String sql = "INSERT INTO usuario(Usuario,Contrasenia,UsuEstd,EmpID) VALUES(?,?,?,?)";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error al ingresar Usuario " + e);
+        }
+        
+        return r;
+    }
 }

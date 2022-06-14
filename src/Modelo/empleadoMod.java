@@ -52,7 +52,7 @@ public class empleadoMod {
             }
             
         } catch (Exception e) {
-            System.out.println("Error al validad empleado en el login:  " + e);
+            System.out.println("Error al validar empleado en el modulo de empleado:  " + e);
         }
         
         return entE;
@@ -86,6 +86,57 @@ public class empleadoMod {
         }
 
         return m;
+    }
+    
+    public Entidad.empleado datosEmp(int idEmp){
+        Entidad.empleado entE = new empleado();
+        
+        String sql = "SELECT * FROM empleado WHERE EmpID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setInt(1, idEmp);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                entE.setEmpID(rs.getInt(1));
+                entE.setEmpDNI(rs.getString(2));
+                entE.setEmpNomb(rs.getString(3));
+                entE.setEmpApePate(rs.getString(4));
+                entE.setEmpApeMat(rs.getString(5));
+                entE.setGenero(rs.getString(6));
+                entE.setEmpFecNac(rs.getString(7));
+                entE.setEmpFecIngr(rs.getString(8));
+                entE.setEmpSalario(rs.getDouble(9));
+                entE.setEmpEstd(rs.getString(10));
+                entE.setEmpFoto(rs.getInt(11));
+                entE.setAreaID(rs.getInt(12));
+            }
+        } catch (Exception e) {
+            System.out.println("error al obtener datos de area:  " + e);
+        }
+        
+        return entE;
+    }
+    
+    public int validarEmpUsuario(int idEmp){
+        int c=0;
+        
+        String sql = "SELECT UsuID FROM usuario WHERE EmpID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setInt(1, idEmp);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                c = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("error al obtener datos de area:  " + e);
+        }
+        
+        return c;
     }
 }
 

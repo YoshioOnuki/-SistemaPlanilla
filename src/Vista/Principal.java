@@ -322,6 +322,9 @@ public class Principal extends javax.swing.JFrame {
         Principal.PanelPrincipal.removeAll();
         Principal.PanelPrincipal.revalidate();
         Principal.PanelPrincipal.repaint();
+        
+        ModulosPrinc.btnReportes.setBackground(new Color(53,66,89));
+        ModulosPrinc.lblReporte.setFont(new Font("SF UI Display", Font.BOLD, 16));
     }//GEN-LAST:event_btnAtrasMouseClicked
 
     private void btnAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseEntered

@@ -5,12 +5,16 @@
  */
 package Vista;
 
+import Entidad.area;
+import Entidad.empleado;
 import Modelo.empleadoMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.ScrollPane;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -23,6 +27,9 @@ public class ModuloEmp extends javax.swing.JPanel {
     DefaultTableModel m = new DefaultTableModel();
     
     Modelo.empleadoMod empMod = new empleadoMod();
+    Entidad.empleado emp = new empleado();
+    
+    public static int idE;
     
     public ModuloEmp() {
         initComponents();
@@ -35,7 +42,7 @@ public class ModuloEmp extends javax.swing.JPanel {
     }
 
     
-    void OpcEmp(int opc){
+    void OpcEmpSal(int opc){
         int fila = tablaEmp.getSelectedRow();
         if(fila == -1){
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
@@ -51,6 +58,35 @@ public class ModuloEmp extends javax.swing.JPanel {
                 Principal.PanelPrincipal.add(mEmpSal, BorderLayout.CENTER);
                 Principal.PanelPrincipal.revalidate();
                 Principal.PanelPrincipal.repaint();
+            }
+        }
+    }
+    void OpcEmUsua(int opc){
+        int fila = tablaEmp.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }else{
+            String a = tablaEmp.getValueAt(fila, 6).toString();
+            if(opc == 2){
+                if(a.equals("Recursos Humanos")){
+                    idE = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
+                    if(empMod.validarEmpUsuario(idE)==0){
+                        ModuloEmpUsua mEmpUsua = new ModuloEmpUsua();
+
+                        mEmpUsua.setSize(new Dimension(970, 600));
+                        mEmpUsua.setLocation(0,0);
+                        Principal.PanelPrincipal.removeAll();
+                        Principal.PanelPrincipal.add(mEmpUsua, BorderLayout.CENTER);
+                        Principal.PanelPrincipal.revalidate();
+                        Principal.PanelPrincipal.repaint(); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El empleado ya cuenta con un Usuario registrado");
+                    }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "Seleccione un empleado del area de Resursos Humanos");
+                }
+                
             }
         }
     }
@@ -88,17 +124,21 @@ public class ModuloEmp extends javax.swing.JPanel {
 
         menuEmp = new javax.swing.JPopupMenu();
         menuSal = new javax.swing.JMenuItem();
+        menuUsuario = new javax.swing.JMenuItem();
         jPanel6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnAgregarEmp = new javax.swing.JPanel();
         lblAgregar = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JScrollPane();
         tablaEmp = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtBuscarEmp = new javax.swing.JTextField();
 
+        menuEmp.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+
+        menuSal.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         menuSal.setText("Actualizar Salario");
         menuSal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +146,15 @@ public class ModuloEmp extends javax.swing.JPanel {
             }
         });
         menuEmp.add(menuSal);
+
+        menuUsuario.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        menuUsuario.setText("Asignar un Usuario");
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsuarioActionPerformed(evt);
+            }
+        });
+        menuEmp.add(menuUsuario);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -213,9 +262,9 @@ public class ModuloEmp extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(890, 360));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(890, 360));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(890, 360));
+        Tabla.setMaximumSize(new java.awt.Dimension(890, 360));
+        Tabla.setMinimumSize(new java.awt.Dimension(890, 360));
+        Tabla.setPreferredSize(new java.awt.Dimension(890, 360));
 
         tablaEmp.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
         tablaEmp.setModel(new javax.swing.table.DefaultTableModel(
@@ -227,7 +276,7 @@ public class ModuloEmp extends javax.swing.JPanel {
             }
         ));
         tablaEmp.setComponentPopupMenu(menuEmp);
-        jScrollPane1.setViewportView(tablaEmp);
+        Tabla.setViewportView(tablaEmp);
 
         jPanel2.setBackground(new java.awt.Color(205, 194, 174));
         jPanel2.setMaximumSize(new java.awt.Dimension(190, 50));
@@ -287,7 +336,7 @@ public class ModuloEmp extends javax.swing.JPanel {
                                 .addComponent(btnAgregarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(536, 536, 536)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -301,7 +350,7 @@ public class ModuloEmp extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAgregarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -346,25 +395,31 @@ public class ModuloEmp extends javax.swing.JPanel {
 
     private void menuSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalActionPerformed
         int opc = 1;
-        OpcEmp(opc);
+        OpcEmpSal(opc);
     }//GEN-LAST:event_menuSalActionPerformed
 
     private void txtBuscarEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarEmpKeyTyped
         buscarEmpleado();
     }//GEN-LAST:event_txtBuscarEmpKeyTyped
 
+    private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
+        int opc = 2;
+        OpcEmUsua(opc);
+    }//GEN-LAST:event_menuUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane Tabla;
     private javax.swing.JPanel btnAgregarEmp;
     private javax.swing.JPanel btnExit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JPopupMenu menuEmp;
     private javax.swing.JMenuItem menuSal;
+    private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JTable tablaEmp;
     private javax.swing.JTextField txtBuscarEmp;
     // End of variables declaration//GEN-END:variables

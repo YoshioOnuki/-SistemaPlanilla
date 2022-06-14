@@ -268,11 +268,11 @@ public class ModulosPrinc extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnArea;
     private javax.swing.JPanel btnEmpleado;
-    private javax.swing.JPanel btnReportes;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel btnReportes;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblArea;
     private javax.swing.JLabel lblEmp;
-    private javax.swing.JLabel lblReporte;
+    public static javax.swing.JLabel lblReporte;
     // End of variables declaration//GEN-END:variables
 
     private Dimension Dimension(int i) {
