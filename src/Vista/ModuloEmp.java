@@ -13,6 +13,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.ScrollPane;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -148,6 +152,7 @@ public class ModuloEmp extends javax.swing.JPanel {
         actualizar = new javax.swing.JMenuItem();
         menuSal = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenuItem();
+        eedad = new javax.swing.JMenuItem();
         jPanel6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -187,6 +192,15 @@ public class ModuloEmp extends javax.swing.JPanel {
             }
         });
         menuEmp.add(menuUsuario);
+
+        eedad.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        eedad.setText("Calcular Edad y Antiguedad ");
+        eedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eedadActionPerformed(evt);
+            }
+        });
+        menuEmp.add(eedad);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -445,12 +459,27 @@ public class ModuloEmp extends javax.swing.JPanel {
         OpcEmpActualizar();
     }//GEN-LAST:event_actualizarActionPerformed
 
+    private void eedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eedadActionPerformed
+        // TODO add your handling code here:
+        int fila = tablaEmp.getSelectedRow();
+        int id = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
+        emp = empMod.datosEmp(id);
+        LocalDate fechaNac = LocalDate.parse(emp.getEmpFecNac());
+        LocalDate fechaIng = LocalDate.parse(emp.getEmpFecIngr());
+        LocalDate ahora = LocalDate.now();
+
+        Period periodo = Period.between(fechaNac, ahora);
+        Period periodo2 = Period.between(fechaIng, ahora);
+        JOptionPane.showMessageDialog(null, "- Edad del Empleado es: " + periodo.getYears() + " años.\n- Antiguedad en la empresa es: " + periodo2.getMonths() + " meses con " + periodo2.getDays() + " dias.");
+    }//GEN-LAST:event_eedadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Tabla;
     private javax.swing.JMenuItem actualizar;
     private javax.swing.JPanel btnExit;
     private javax.swing.JPanel btnNuevoEmp;
+    private javax.swing.JMenuItem eedad;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;

@@ -7,6 +7,7 @@ package Vista;
 
 import Modelo.areaMod;
 import Modelo.empleadoMod;
+import Modelo.historialMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,14 +25,13 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
     Modelo.empleadoMod empMod = new empleadoMod();
     Modelo.areaMod areaMod = new areaMod();
     
-    
     public ModuloReportesEmp() {
         initComponents();
         mostrarArea("");
         cargarComboArea();
     }
 
-    void mostrarArea(String bus){
+      void mostrarArea(String bus){
         try {
             m = empMod.consultarEmpleado2(bus);
             tablaEmp.setModel(m);
