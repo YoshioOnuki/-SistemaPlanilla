@@ -10,6 +10,7 @@ import Entidad.empleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -137,6 +138,26 @@ public class empleadoMod {
         }
         
         return c;
+    }
+    
+    public void cargarComboArea(JComboBox cbo){
+        
+        String sql = "SELECT AreaNom FROM area";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            rs = ps.executeQuery();
+            cbo.removeAllItems();
+            cbo.addItem("Seleccione");
+            
+            while(rs.next()){
+                cbo.addItem(rs.getString(1));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error en combo Area: " + e);
+        }
     }
 }
 
