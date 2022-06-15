@@ -5,9 +5,13 @@
  */
 package Vista;
 
+import Modelo.areaMod;
+import Modelo.empleadoMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -15,13 +19,55 @@ import java.awt.Dimension;
  */
 public class ModuloReportesEmp extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloReportesEmp
-     */
+    DefaultTableModel m = new DefaultTableModel();
+    
+    Modelo.empleadoMod empMod = new empleadoMod();
+    Modelo.areaMod areaMod = new areaMod();
+    
+    
     public ModuloReportesEmp() {
         initComponents();
+        mostrarArea("");
+        cargarComboArea();
     }
 
+    void mostrarArea(String bus){
+        try {
+            m = empMod.consultarEmpleado2(bus);
+            tablaEmp.setModel(m);
+            
+            TableColumn t = tablaEmp.getColumn("DNI");
+            t.setPreferredWidth(80);
+            t.setMaxWidth(80);
+            t.setMinWidth(80);
+            
+            TableColumn t2 = tablaEmp.getColumn("ID");
+            t2.setPreferredWidth(50);
+            t2.setMaxWidth(50);
+            t2.setMinWidth(50);
+            
+            TableColumn t3 = tablaEmp.getColumn("SALARIO");
+            t3.setPreferredWidth(80);
+            t3.setMaxWidth(80);
+            t3.setMinWidth(80);
+            
+            
+            tablaEmp.setRowHeight(25);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar paciente: " + e);
+        }
+    }
+    
+    void cargarComboArea(){
+        empMod.cargarComboArea(cboArea);
+    }
+    
+    String getNombreArea(){
+        String nom = cboArea.getSelectedItem().toString();
+ 
+        return nom;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,6 +83,8 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEmp = new javax.swing.JTable();
+        cboArea = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(970, 600));
@@ -122,6 +170,33 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
         tablaEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tablaEmp);
 
+        cboArea.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        cboArea.setMaximumSize(new java.awt.Dimension(230, 26));
+        cboArea.setMinimumSize(new java.awt.Dimension(230, 26));
+        cboArea.setPreferredSize(new java.awt.Dimension(230, 26));
+        cboArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboAreaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cboAreaMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cboAreaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cboAreaMouseReleased(evt);
+            }
+        });
+        cboArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboAreaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        jLabel8.setText("Área:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,7 +208,11 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -143,7 +222,11 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -163,11 +246,42 @@ public class ModuloReportesEmp extends javax.swing.JPanel {
         btnExit.setBackground(new Color(53,66,89));
     }//GEN-LAST:event_btnExitMouseExited
 
+    private void cboAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAreaActionPerformed
+        
+        
+    }//GEN-LAST:event_cboAreaActionPerformed
+
+    private void cboAreaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboAreaMouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboAreaMouseReleased
+
+    private void cboAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboAreaMouseEntered
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboAreaMouseEntered
+
+    private void cboAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboAreaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboAreaMouseClicked
+
+    private void cboAreaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboAreaMousePressed
+        // TODO add your handling code here:
+        if (areaMod.obtenerID(getNombreArea())==0){
+            mostrarArea("");
+        }else{
+            mostrarArea(getNombreArea());
+        }
+    }//GEN-LAST:event_cboAreaMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnExit;
+    private javax.swing.JComboBox<String> cboArea;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaEmp;

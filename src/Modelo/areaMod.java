@@ -103,4 +103,24 @@ public class areaMod {
         
         return r;
     } 
+    
+    public int obtenerID(String nom){
+        int c=0;
+        
+        String sql = "SELECT AreaID FROM area WHERE AreaNom=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setString(1, nom);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                c = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("error al obtener datos de area:  " + e);
+        }
+        
+        return c;
+    }
 }

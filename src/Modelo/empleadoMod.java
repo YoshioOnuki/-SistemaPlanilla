@@ -89,6 +89,39 @@ public class empleadoMod {
         return m;
     }
     
+    //Haciendo la consulta para mostrar los datos del empleado en una tabla
+    public DefaultTableModel consultarEmpleado2(String b){
+        String []titulos={"ID","DNI","NOMBRES","APELLIDOS","FECHA NACIMIENTO","GENERO","FECHA INGRESO","SALARIO","ESTADO","AREA"};
+        DefaultTableModel m = new DefaultTableModel(null, titulos);
+        Object[] o = new Object[10];
+        
+        String sql = "SELECT e.EmpID,e.EmpDNI,e.EmpNomb,e.EmpApePate,e.EmpApeMat,e.EmpFecNac,e.Genero,e.EmpFecIngr,e.EmpSalario,e.EmpEstd,a.AreaNom FROM empleado e INNER JOIN area a ON e.AreaID=a.AreaID WHERE e.EmpEstd='ACTIVO' AND (a.AreaNom LIKE '%" + b + "%')";
+   
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                o[0] = rs.getInt(1);
+                o[1] = rs.getString(2);
+                o[2] = rs.getString(3);
+                o[3] = rs.getString(4)+" "+rs.getString(5);
+                o[4] = rs.getString(6);
+                o[5] = rs.getString(7);
+                o[6] = rs.getString(8);
+                o[7] = rs.getDouble(9);
+                o[8] = rs.getString(10);
+                o[9] = rs.getString(11);
+                
+                m.addRow(o);
+            }
+        } catch (Exception e) {
+            System.out.println("error consultar datos del empelado en reportes para mostrar en la tabla: " + e);
+        }
+
+        return m;
+    }
+    
     public Entidad.empleado datosEmp(int idEmp){
         Entidad.empleado entE = new empleado();
         
@@ -159,5 +192,23 @@ public class empleadoMod {
             System.out.println("Error en combo Area: " + e);
         }
     }
+    
+    public int updateEmpleado(Object[] o) {
+        int r = 0;
+        String sql = "UPDATE empleado SET EmpSalario=?, AreaID=? WHERE EmpID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error actualizar salirio de los empleados" + e);
+        }
+        
+        return r;
+    } 
 }
 

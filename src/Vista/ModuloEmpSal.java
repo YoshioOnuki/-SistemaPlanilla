@@ -5,9 +5,17 @@
  */
 package Vista;
 
+import Entidad.area;
+import Entidad.empleado;
+import Modelo.areaMod;
+import Modelo.empleadoMod;
+import Modelo.historialMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +23,14 @@ import java.awt.Dimension;
  */
 public class ModuloEmpSal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloEmpSal
-     */
+    Entidad.empleado e = new empleado();
+    Modelo.empleadoMod eMod = new empleadoMod();
+    Entidad.area a = new area();
+    Modelo.areaMod aMod = new areaMod();
+    Modelo.historialMod hMod = new historialMod();
+            
+    
+    
     public ModuloEmpSal() {
         initComponents();
         txtSalarioAnt.setEditable(false);
@@ -26,8 +39,82 @@ public class ModuloEmpSal extends javax.swing.JPanel {
         txtNomb.setEditable(false);
         //lblSalarioAnt.setVisible(false);
         //txtSalarioAnt.setVisible(false);
+        cargarComboArea();
+        cargarDatos();
     }
 
+    void cargarDatos(){
+        int idE = ModuloEmp.idE; 
+        
+        System.out.println("" + idE);
+        
+        e = eMod.datosEmp(idE);
+        a = aMod.datosArea(e.getAreaID());
+        System.out.println("Area ID: " + e.getAreaID());
+        System.out.println("Area: " + ModuloEmp.AreaNom);
+        
+        txtCodEmp.setText("" + e.getEmpID());
+        txtDNI.setText(e.getEmpDNI());
+        txtNomb.setText(e.getEmpNomb()+" "+e.getEmpApePate()+" "+e.getEmpApeMat());
+        txtSalarioAnt.setText("" + e.getEmpSalario());
+        cboArea.setSelectedItem(ModuloEmp.AreaNom);
+    }
+    
+    void cargarComboArea(){
+        eMod.cargarComboArea(cboArea);
+    }
+    
+    void agregarSalario(){
+        if(txtSalario.getText().equals("") || cboArea.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Campos de textos vacios");
+            txtSalario.requestFocus();
+        }else{
+            double salarioN = Double.parseDouble(txtSalario.getText());
+            double salarioA = Double.parseDouble(txtSalarioAnt.getText());
+            String area = cboArea.getSelectedItem().toString();
+            int iE = Integer.parseInt(txtCodEmp.getText());
+            DateTimeFormatter fechita = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); //capturando fecha actual
+            String fecharegistro = ""+fechita.format(LocalDateTime.now());
+            int iA = aMod.obtenerID(area);
+
+            Object[] ob = new Object[4];
+
+            ob[0] = salarioA;
+            ob[1] = salarioN;
+            ob[2] = fecharegistro;
+            ob[3] = iE;
+
+            int r1 = hMod.addHistorial(ob);
+            
+            if(r1>0){
+                JOptionPane.showMessageDialog(null, "Datos de historia ingresados correctamente");
+            }
+            
+            //actualizar los datos del empleado
+            Object[] ob2 = new Object[3];
+
+            ob2[0] = salarioN;
+            ob2[1] = iA;
+            ob2[2] = iE;
+
+            int r2 = eMod.updateEmpleado(ob2);
+            
+            if(r2>0){
+                JOptionPane.showMessageDialog(null, "Datos de empelado actualizados correctamente");
+            }
+            
+            ModuloEmp mEmp = new ModuloEmp();
+
+            mEmp.setSize(new Dimension(970, 600));
+            mEmp.setLocation(0,0);
+            Principal.PanelPrincipal.removeAll();
+            Principal.PanelPrincipal.add(mEmp, BorderLayout.CENTER);
+            Principal.PanelPrincipal.revalidate();
+            Principal.PanelPrincipal.repaint();
+            
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -367,14 +454,7 @@ public class ModuloEmpSal extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSalarioActionPerformed
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        ModuloEmp mEmp = new ModuloEmp();
-
-        mEmp.setSize(new Dimension(970, 600));
-        mEmp.setLocation(0,0);
-        Principal.PanelPrincipal.removeAll();
-        Principal.PanelPrincipal.add(mEmp, BorderLayout.CENTER);
-        Principal.PanelPrincipal.revalidate();
-        Principal.PanelPrincipal.repaint();
+        agregarSalario();
 
     }//GEN-LAST:event_btnGuardarMouseClicked
 

@@ -30,6 +30,7 @@ public class ModuloEmp extends javax.swing.JPanel {
     Entidad.empleado emp = new empleado();
     
     public static int idE;
+    public static String AreaNom;
     
     public ModuloEmp() {
         initComponents();
@@ -50,6 +51,9 @@ public class ModuloEmp extends javax.swing.JPanel {
             //codEmp = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
             
             if(opc == 1){
+                idE = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
+                AreaNom = tablaEmp.getValueAt(fila,6).toString();
+                
                 ModuloEmpSal mEmpSal = new ModuloEmpSal();
 
                 mEmpSal.setSize(new Dimension(970, 600));
@@ -67,9 +71,9 @@ public class ModuloEmp extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }else{
             String a = tablaEmp.getValueAt(fila, 6).toString();
+            idE = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
             if(opc == 2){
                 if(a.equals("Recursos Humanos")){
-                    idE = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
                     if(empMod.validarEmpUsuario(idE)==0){
                         ModuloEmpUsua mEmpUsua = new ModuloEmpUsua();
 
