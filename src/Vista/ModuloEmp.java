@@ -129,7 +129,7 @@ public class ModuloEmp extends javax.swing.JPanel {
         btnExit = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnAgregarEmp = new javax.swing.JPanel();
+        btnNuevoEmp = new javax.swing.JPanel();
         lblAgregar = new javax.swing.JLabel();
         Tabla = new javax.swing.JScrollPane();
         tablaEmp = new javax.swing.JTable();
@@ -225,19 +225,19 @@ public class ModuloEmp extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
         jLabel2.setText("Empleados");
 
-        btnAgregarEmp.setBackground(new java.awt.Color(205, 194, 174));
-        btnAgregarEmp.setMaximumSize(new java.awt.Dimension(140, 50));
-        btnAgregarEmp.setMinimumSize(new java.awt.Dimension(140, 50));
-        btnAgregarEmp.setPreferredSize(new java.awt.Dimension(140, 50));
-        btnAgregarEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnNuevoEmp.setBackground(new java.awt.Color(205, 194, 174));
+        btnNuevoEmp.setMaximumSize(new java.awt.Dimension(140, 50));
+        btnNuevoEmp.setMinimumSize(new java.awt.Dimension(140, 50));
+        btnNuevoEmp.setPreferredSize(new java.awt.Dimension(140, 50));
+        btnNuevoEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarEmpMouseClicked(evt);
+                btnNuevoEmpMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarEmpMouseEntered(evt);
+                btnNuevoEmpMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarEmpMouseExited(evt);
+                btnNuevoEmpMouseExited(evt);
             }
         });
 
@@ -245,18 +245,18 @@ public class ModuloEmp extends javax.swing.JPanel {
         lblAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAgregar.setText("Nuevo");
 
-        javax.swing.GroupLayout btnAgregarEmpLayout = new javax.swing.GroupLayout(btnAgregarEmp);
-        btnAgregarEmp.setLayout(btnAgregarEmpLayout);
-        btnAgregarEmpLayout.setHorizontalGroup(
-            btnAgregarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnAgregarEmpLayout.createSequentialGroup()
+        javax.swing.GroupLayout btnNuevoEmpLayout = new javax.swing.GroupLayout(btnNuevoEmp);
+        btnNuevoEmp.setLayout(btnNuevoEmpLayout);
+        btnNuevoEmpLayout.setHorizontalGroup(
+            btnNuevoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnNuevoEmpLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        btnAgregarEmpLayout.setVerticalGroup(
-            btnAgregarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnAgregarEmpLayout.createSequentialGroup()
+        btnNuevoEmpLayout.setVerticalGroup(
+            btnNuevoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnNuevoEmpLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
@@ -333,7 +333,7 @@ public class ModuloEmp extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAgregarEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNuevoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(536, 536, 536)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,7 +348,7 @@ public class ModuloEmp extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAgregarEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnNuevoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -369,25 +369,24 @@ public class ModuloEmp extends javax.swing.JPanel {
         btnExit.setBackground(new Color(53,66,89));
     }//GEN-LAST:event_btnExitMouseExited
 
-    private void btnAgregarEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpMouseClicked
-        
-        ModuloEmpAgr mEmpAg = new ModuloEmpAgr();
+    private void btnNuevoEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoEmpMouseClicked
+        ModuloEmpAgr mEmpAgr = new ModuloEmpAgr();
 
-        mEmpAg.setSize(new Dimension(970, 600));
-        mEmpAg.setLocation(0,0);
+        mEmpAgr.setSize(new Dimension(970, 600));
+        mEmpAgr.setLocation(0,0);
         Principal.PanelPrincipal.removeAll();
-        Principal.PanelPrincipal.add(mEmpAg, BorderLayout.CENTER);
+        Principal.PanelPrincipal.add(mEmpAgr, BorderLayout.CENTER);
         Principal.PanelPrincipal.revalidate();
         Principal.PanelPrincipal.repaint();
-    }//GEN-LAST:event_btnAgregarEmpMouseClicked
+    }//GEN-LAST:event_btnNuevoEmpMouseClicked
 
-    private void btnAgregarEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpMouseEntered
-        btnAgregarEmp.setBackground(new Color(194, 222, 209));
-    }//GEN-LAST:event_btnAgregarEmpMouseEntered
+    private void btnNuevoEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoEmpMouseEntered
+        btnNuevoEmp.setBackground(new Color(194, 222, 209));
+    }//GEN-LAST:event_btnNuevoEmpMouseEntered
 
-    private void btnAgregarEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpMouseExited
-        btnAgregarEmp.setBackground(new Color(205,194,174));
-    }//GEN-LAST:event_btnAgregarEmpMouseExited
+    private void btnNuevoEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoEmpMouseExited
+        btnNuevoEmp.setBackground(new Color(205,194,174));
+    }//GEN-LAST:event_btnNuevoEmpMouseExited
 
     private void txtBuscarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarEmpActionPerformed
         
@@ -410,8 +409,8 @@ public class ModuloEmp extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Tabla;
-    private javax.swing.JPanel btnAgregarEmp;
     private javax.swing.JPanel btnExit;
+    private javax.swing.JPanel btnNuevoEmp;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;

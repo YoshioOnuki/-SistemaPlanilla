@@ -113,21 +113,12 @@ public class ModuloReportesPlanMes extends javax.swing.JPanel {
         tablaEmp.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
         tablaEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "DNI", "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Género", "Área", "Fecha de Ingreso", "Numeno de Hijos"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         tablaEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tablaEmp);
 

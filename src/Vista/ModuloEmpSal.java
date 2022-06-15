@@ -48,7 +48,7 @@ public class ModuloEmpSal extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtNomb = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtArea = new javax.swing.JTextField();
+        cboArea = new javax.swing.JComboBox<>();
         lblSalarioAnt = new javax.swing.JLabel();
         txtSalarioAnt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -170,16 +170,11 @@ public class ModuloEmpSal extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel8.setText("Área:");
 
-        txtArea.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        txtArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
-        txtArea.setMaximumSize(new java.awt.Dimension(250, 26));
-        txtArea.setMinimumSize(new java.awt.Dimension(250, 26));
-        txtArea.setPreferredSize(new java.awt.Dimension(250, 26));
-        txtArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAreaActionPerformed(evt);
-            }
-        });
+        cboArea.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        cboArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        cboArea.setMaximumSize(new java.awt.Dimension(230, 26));
+        cboArea.setMinimumSize(new java.awt.Dimension(230, 26));
+        cboArea.setPreferredSize(new java.awt.Dimension(230, 26));
 
         lblSalarioAnt.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         lblSalarioAnt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -277,15 +272,13 @@ public class ModuloEmpSal extends javax.swing.JPanel {
                                     .addComponent(txtDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtSalarioAnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel8))
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(24, 24, 24)
-                                .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(cboArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCodEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -321,7 +314,7 @@ public class ModuloEmpSal extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNomb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSalarioAnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,10 +362,6 @@ public class ModuloEmpSal extends javax.swing.JPanel {
         btnExit.setBackground(new Color(53,66,89));
     }//GEN-LAST:event_btnExitMouseExited
 
-    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAreaActionPerformed
-
     private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalarioActionPerformed
@@ -405,6 +394,7 @@ public class ModuloEmpSal extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnExit;
     private javax.swing.JPanel btnGuardar;
+    private javax.swing.JComboBox<String> cboArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -416,7 +406,6 @@ public class ModuloEmpSal extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblSalarioAnt;
-    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtCodEmp;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNomb;
