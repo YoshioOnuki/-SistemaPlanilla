@@ -5,9 +5,14 @@
  */
 package Vista;
 
+import Modelo.areaMod;
+import Modelo.empleadoMod;
+import Modelo.historialMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -15,11 +20,32 @@ import java.awt.Dimension;
  */
 public class ModuloReportesSalEmp extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModuloReportesEmp
-     */
+    DefaultTableModel m = new DefaultTableModel();
+    
+    Modelo.empleadoMod empMod = new empleadoMod();
+    Modelo.areaMod areaMod = new areaMod();
+    Modelo.historialMod hMod = new historialMod();
+    
     public ModuloReportesSalEmp() {
         initComponents();
+        mostrarArea();
+    }
+    
+  
+    void mostrarArea(){
+        try {
+            m = hMod.consultarEmpleadoHistorial();
+            tablaEmp.setModel(m);
+           
+            TableColumn t2 = tablaEmp.getColumn("ID");
+            t2.setPreferredWidth(50);
+            t2.setMaxWidth(50);
+            t2.setMinWidth(50);
+
+            tablaEmp.setRowHeight(25);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar reporte de los historiales de los salarios: " + e);
+        }
     }
 
     /**
