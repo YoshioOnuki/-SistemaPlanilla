@@ -210,5 +210,72 @@ public class empleadoMod {
         
         return r;
     } 
+    
+    public int addEmpleado(Object[] o) {
+        int r = 0;
+        String sql = "INSERT INTO empleado(EmpDNI,EmpNomb,EmpApePate,EmpApeMat,Genero,EmpFecNac,EmpFecIngr,EmpSalario,EmpEstd,EmpFoto,AreaID) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            ps.setObject(5, o[4]);
+            ps.setObject(6, o[5]);
+            ps.setObject(7, o[6]);
+            ps.setObject(8, o[7]);
+            ps.setObject(9, o[8]);
+            ps.setObject(10, o[9]);
+            ps.setObject(11, o[10]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error al ingresar empleado  " + e);
+        }
+        
+        return r;
+    }
+    
+    public int maxcodEmp(){
+        int c=0;
+        
+        String sql = "SELECT max(EmpID) FROM empleado";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                c = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("error al obtener datos de del ultimo id del empleado:  " + e);
+        }
+        
+        return c;
+    }
+    
+    public int updateEmpleado2(Object[] o) {
+        int r = 0;
+        String sql = "UPDATE empleado SET EmpDNI=?, EmpNomb=?, EmpApePate=?, EmpApeMat=?, Genero=?, EmpFecNac=? WHERE EmpID=?";
+        
+        try {
+            acce = con.conectardb();
+            ps = acce.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            ps.setObject(5, o[4]);
+            ps.setObject(6, o[5]);
+            ps.setObject(7, o[6]);
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("error actualizar empeladoooo de los empleados" + e);
+        }
+        
+        return r;
+    } 
 }
 

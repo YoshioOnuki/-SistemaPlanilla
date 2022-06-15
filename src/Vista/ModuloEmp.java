@@ -29,7 +29,7 @@ public class ModuloEmp extends javax.swing.JPanel {
     Modelo.empleadoMod empMod = new empleadoMod();
     Entidad.empleado emp = new empleado();
     
-    public static int idE;
+    public static int idE, tipooo;
     public static String AreaNom;
     
     public ModuloEmp() {
@@ -63,6 +63,24 @@ public class ModuloEmp extends javax.swing.JPanel {
                 Principal.PanelPrincipal.revalidate();
                 Principal.PanelPrincipal.repaint();
             }
+        }
+    }
+    void OpcEmpActualizar(){
+        int fila = tablaEmp.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }else{
+            AreaNom = tablaEmp.getValueAt(fila,6).toString();
+            idE = Integer.parseInt(tablaEmp.getValueAt(fila, 0).toString());
+
+            ModuloEmpAgr mEmpAgr = new ModuloEmpAgr();
+
+            mEmpAgr.setSize(new Dimension(970, 600));
+            mEmpAgr.setLocation(0,0);
+            Principal.PanelPrincipal.removeAll();
+            Principal.PanelPrincipal.add(mEmpAgr, BorderLayout.CENTER);
+            Principal.PanelPrincipal.revalidate();
+            Principal.PanelPrincipal.repaint();
         }
     }
     void OpcEmUsua(int opc){
@@ -127,6 +145,7 @@ public class ModuloEmp extends javax.swing.JPanel {
     private void initComponents() {
 
         menuEmp = new javax.swing.JPopupMenu();
+        actualizar = new javax.swing.JMenuItem();
         menuSal = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenuItem();
         jPanel6 = new javax.swing.JPanel();
@@ -141,6 +160,15 @@ public class ModuloEmp extends javax.swing.JPanel {
         txtBuscarEmp = new javax.swing.JTextField();
 
         menuEmp.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+
+        actualizar.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
+        actualizar.setText("Actualizar Empleado");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
+        menuEmp.add(actualizar);
 
         menuSal.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         menuSal.setText("Actualizar Salario");
@@ -374,6 +402,7 @@ public class ModuloEmp extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnNuevoEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoEmpMouseClicked
+        tipooo = 1;
         ModuloEmpAgr mEmpAgr = new ModuloEmpAgr();
 
         mEmpAgr.setSize(new Dimension(970, 600));
@@ -410,9 +439,16 @@ public class ModuloEmp extends javax.swing.JPanel {
         OpcEmUsua(opc);
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        // TODO add your handling code here:
+        tipooo = 2;
+        OpcEmpActualizar();
+    }//GEN-LAST:event_actualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Tabla;
+    private javax.swing.JMenuItem actualizar;
     private javax.swing.JPanel btnExit;
     private javax.swing.JPanel btnNuevoEmp;
     private javax.swing.JLabel jLabel2;

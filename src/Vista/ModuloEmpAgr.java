@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Entidad.empleado;
+import Modelo.areaMod;
+import Modelo.empleadoMod;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,12 +15,18 @@ import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,16 +37,172 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private FileInputStream fis;
     private int longitudBytes;
     
+    Modelo.empleadoMod empMod = new empleadoMod();
+    Modelo.areaMod aM = new areaMod();
+    Entidad.empleado e = new empleado();
     
     public ModuloEmpAgr() {
         initComponents();
         txtCodEmp.setEditable(false);
-        
+        cargarCboArea();
+        titulo();
     }
     
+    void cargarCboArea(){
+        empMod.cargarComboArea(cboArea);
+    }
     
+    void titulo(){
+        if(ModuloEmp.tipooo==1){
+            titulo.setText("");
+            titulo.setText("Ingresar Empleado");
+            lblAgregar.setText("");
+            lblAgregar.setText("Ingresar");
+            genCOD();
+        }else if(ModuloEmp.tipooo==2){
+            titulo.setText("");
+            titulo.setText("Modificar Empleado");
+            lblAgregar.setText("");
+            lblAgregar.setText("Modificar");
+            cargarDatosActualizar();
+        }
+    }
     
+    void genCOD(){
+        int id = empMod.maxcodEmp();
+        
+        txtCodEmp.setText("" + (id+1));
+    }
     
+    //aqui cargamos todos los datos del empleado para proceder a modificar
+    void cargarDatosActualizar(){
+        int ide = ModuloEmp.idE; 
+        System.out.println("idE " + ide);
+        e = empMod.datosEmp(ide);
+        
+        txtCodEmp.setText(""+ ide);
+        txtIngrNomb.setText(e.getEmpNomb());
+        txtIngrApePa.setText(e.getEmpApePate());
+        txtIngrApeMa.setText(e.getEmpApeMat());
+        cboGenero.setSelectedItem(e.getGenero());
+        txtIngDNI.setText(e.getEmpDNI());
+        try {
+            SimpleDateFormat formatodeltexto = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = null;
+            fecha = (Date) formatodeltexto.parse(e.getEmpFecNac());
+            txtFecNac.setDate(fecha);
+            
+            SimpleDateFormat formatodeltexto2 = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha2 = null;
+            fecha2 = (Date) formatodeltexto2.parse(e.getEmpFecIngr());
+            txtFecIngr.setDate(fecha2);
+        } catch (Exception e) {
+        }
+        cboArea.setSelectedItem(ModuloEmp.AreaNom);
+    }
+    
+    void agregarEmpleado(){
+        if(txtCodEmp.getText().equals("") || txtIngrNomb.getText().equals("") ||txtIngrApePa.getText().equals("") ||txtFecNac.getDate()==null ||txtFecIngr.getDate()==null||txtIngrApeMa.getText().equals("") ||txtIngDNI.getText().equals("") || cboArea.getSelectedIndex()==0 || cboGenero.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Campos de textos vacios");
+            txtIngDNI.requestFocus();
+        }else{
+            Date f = txtFecNac.getDate();
+            DateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+            String fechana = f2.format(f);
+            
+            Date f3 = txtFecIngr.getDate();
+            DateFormat f22 = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaingreso = f22.format(f3);
+            
+            String dni = txtIngDNI.getText();
+            int iE = Integer.parseInt(txtCodEmp.getText());
+            String nom = txtIngrNomb.getText();
+            String apep = txtIngrApePa.getText();
+            String apem = txtIngrApeMa.getText();
+            String gen = cboGenero.getSelectedItem().toString();
+            String area = cboArea.getSelectedItem().toString();
+            int iA = aM.obtenerID(area);
+            int foto=0;
+            String est = "ACTIVO";
+            
+            Object[] ob = new Object[11];
+
+            ob[0] = dni;
+            ob[1] = nom;
+            ob[2] = apep;
+            ob[3] = apem;
+            ob[4] = gen;
+            ob[5] = fechana;
+            ob[6] = fechaingreso;
+            ob[7] = null;
+            ob[8] = est;
+            ob[9] = null;
+            ob[10] = iA;
+
+            int r1 = empMod.addEmpleado(ob);
+            
+            if(r1>0){
+                JOptionPane.showMessageDialog(null, "Datos de empleado ingresados correctamente");
+            }
+            
+            ModuloEmp mEmp = new ModuloEmp();
+
+            mEmp.setSize(new Dimension(970, 600));
+            mEmp.setLocation(0,0);
+            Principal.PanelPrincipal.removeAll();
+            Principal.PanelPrincipal.add(mEmp, BorderLayout.CENTER);
+            Principal.PanelPrincipal.revalidate();
+            Principal.PanelPrincipal.repaint();
+
+            
+        }
+    }
+    
+    void actualizarEmpleado(){
+        if(txtCodEmp.getText().equals("") || txtIngrNomb.getText().equals("") ||txtIngrApePa.getText().equals("") ||txtFecNac.getDate()==null ||txtFecIngr.getDate()==null||txtIngrApeMa.getText().equals("") ||txtIngDNI.getText().equals("") || cboArea.getSelectedIndex()==0 || cboGenero.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Campos de textos vacios");
+            txtIngDNI.requestFocus();
+        }else{
+            Date f = txtFecNac.getDate();
+            DateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+            String fechana = f2.format(f);
+            
+            String dni = txtIngDNI.getText();
+            int iE = Integer.parseInt(txtCodEmp.getText());
+            String nom = txtIngrNomb.getText();
+            String apep = txtIngrApePa.getText();
+            String apem = txtIngrApeMa.getText();
+            String gen = cboGenero.getSelectedItem().toString();
+            int foto=0;
+            
+            Object[] ob = new Object[7];
+
+            ob[0] = dni;
+            ob[1] = nom;
+            ob[2] = apep;
+            ob[3] = apem;
+            ob[4] = gen;
+            ob[5] = fechana;
+            ob[6] = iE;
+
+            int r1 = empMod.updateEmpleado2(ob);
+            
+            if(r1>0){
+                JOptionPane.showMessageDialog(null, "Datos de empleado actualizadoos correctamente");
+            }
+            
+            ModuloEmp mEmp = new ModuloEmp();
+
+            mEmp.setSize(new Dimension(970, 600));
+            mEmp.setLocation(0,0);
+            Principal.PanelPrincipal.removeAll();
+            Principal.PanelPrincipal.add(mEmp, BorderLayout.CENTER);
+            Principal.PanelPrincipal.revalidate();
+            Principal.PanelPrincipal.repaint();
+
+            
+        }
+    }
     
     public void guardarFoto(){
         
@@ -59,7 +224,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtIngDNI = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -67,7 +232,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtIngrApePa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtIngrApePa1 = new javax.swing.JTextField();
+        txtIngrApeMa = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cboGenero = new javax.swing.JComboBox<>();
@@ -149,9 +314,9 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel2.setBackground(new java.awt.Color(0, 23, 35));
-        jLabel2.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
-        jLabel2.setText("Empleados");
+        titulo.setBackground(new java.awt.Color(0, 23, 35));
+        titulo.setFont(new java.awt.Font("SF UI Display", 1, 30)); // NOI18N
+        titulo.setText("Empleados");
 
         jLabel1.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel1.setText("DNI:");
@@ -198,14 +363,14 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SF UI Display", 1, 14)); // NOI18N
         jLabel5.setText("Apellido Materno:");
 
-        txtIngrApePa1.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
-        txtIngrApePa1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
-        txtIngrApePa1.setMaximumSize(new java.awt.Dimension(230, 26));
-        txtIngrApePa1.setMinimumSize(new java.awt.Dimension(230, 26));
-        txtIngrApePa1.setPreferredSize(new java.awt.Dimension(230, 26));
-        txtIngrApePa1.addActionListener(new java.awt.event.ActionListener() {
+        txtIngrApeMa.setFont(new java.awt.Font("SF UI Display", 0, 14)); // NOI18N
+        txtIngrApeMa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.lightGray, null));
+        txtIngrApeMa.setMaximumSize(new java.awt.Dimension(230, 26));
+        txtIngrApeMa.setMinimumSize(new java.awt.Dimension(230, 26));
+        txtIngrApeMa.setPreferredSize(new java.awt.Dimension(230, 26));
+        txtIngrApeMa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngrApePa1ActionPerformed(evt);
+                txtIngrApeMaActionPerformed(evt);
             }
         });
 
@@ -349,7 +514,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(jLabel2))
+                        .addComponent(titulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +545,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                                             .addComponent(txtIngrNomb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtIngrApePa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtIngDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIngrApePa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(txtIngrApeMa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(txtFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
@@ -405,7 +570,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addComponent(titulo)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -425,7 +590,7 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtIngrApePa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIngrApeMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
@@ -494,21 +659,16 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIngrApePaActionPerformed
 
-    private void txtIngrApePa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrApePa1ActionPerformed
+    private void txtIngrApeMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngrApeMaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngrApePa1ActionPerformed
+    }//GEN-LAST:event_txtIngrApeMaActionPerformed
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        ModuloEmp mEmp = new ModuloEmp();
-
-        mEmp.setSize(new Dimension(970, 600));
-        mEmp.setLocation(0,0);
-        Principal.PanelPrincipal.removeAll();
-        Principal.PanelPrincipal.add(mEmp, BorderLayout.CENTER);
-        Principal.PanelPrincipal.revalidate();
-        Principal.PanelPrincipal.repaint();
-        
-        
+        if(ModuloEmp.tipooo==1){
+            agregarEmpleado();
+        }else if(ModuloEmp.tipooo==2){
+            actualizarEmpleado();
+        }
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
@@ -564,7 +724,6 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -576,12 +735,13 @@ public class ModuloEmpAgr extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblFotoUser;
+    private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtCodEmp;
     private com.toedter.calendar.JDateChooser txtFecIngr;
     private com.toedter.calendar.JDateChooser txtFecNac;
     private javax.swing.JTextField txtIngDNI;
+    private javax.swing.JTextField txtIngrApeMa;
     private javax.swing.JTextField txtIngrApePa;
-    private javax.swing.JTextField txtIngrApePa1;
     private javax.swing.JTextField txtIngrNomb;
     // End of variables declaration//GEN-END:variables
 }
