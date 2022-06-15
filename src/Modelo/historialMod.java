@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author yoshi
+ * @author yosh
  */
 public class historialMod {
     PreparedStatement ps;
