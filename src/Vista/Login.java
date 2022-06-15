@@ -32,8 +32,8 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Login");
         placeholder();
-        txtUsuario.setText("USUA001");
-        txtContrasenia.setText("123123");
+//        txtUsuario.setText("USUA001");
+//        txtContrasenia.setText("123123");
     }
     
     //Para los campos de texto
